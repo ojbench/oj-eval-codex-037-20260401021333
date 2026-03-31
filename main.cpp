@@ -87,13 +87,15 @@ void Print() {
 }
 
 void Clear() {
-    // delete all nodes including sentinels
+    // delete all nodes including tail sentinel, then delete head
+    if (!head) return;
     NODE *cur = head->next;
     while (cur != nullptr) {
         NODE *nxt = cur->next;
         delete cur;
         cur = nxt;
     }
+    delete head;
     head = tail = nullptr;
     len = 0;
 }
@@ -136,4 +138,3 @@ int main() {
     DoubleLinkList::Clear();
     return 0;
 }
-
